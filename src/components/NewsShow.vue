@@ -1,13 +1,24 @@
 <template>
   <div class="news-block">
-    <div v-if="newsArticle">
-      <div class="row">
-        <div class="col-12">
-          <h3>{{newsArticle.headline}}</h3>
-          <img :src="newsArticle.image_url" @error="$event.target.src='https://climate.onep.go.th/wp-content/uploads/2020/01/default-image.png'" />
-          <p>{{new Date(newsArticle.publication_date).toDateString()}} by {{newsArticle.author}}</p>
-          <p>{{newsArticle.body}}</p>
+    <router-link class="back-link" :to="{name: 'News'}" exact>
+      Back to All News
+    </router-link>
+    <div v-if="isLoading">
+      Loading Event..
+    </div>
+    <div v-else>
+      <div v-if="newsArticle">
+        <div class="row">
+          <div class="col-12">
+            <h3>{{newsArticle.headline}}</h3>
+            <img :src="newsArticle.image_url" @error="$event.target.src='https://climate.onep.go.th/wp-content/uploads/2020/01/default-image.png'" />
+            <p>{{new Date(newsArticle.publication_date).toDateString()}} by {{newsArticle.author}}</p>
+            <p>{{newsArticle.body}}</p>
+          </div>
         </div>
+      </div>
+      <div v-else>
+        <h3>News article not found </h3>
       </div>
     </div>
   </div>
@@ -33,6 +44,7 @@ export default {
         this.isLoading = false
       } catch (e) {
         console.log(e);
+        this.isLoading = false
       }
   }
 }
@@ -47,5 +59,14 @@ export default {
     width: 80%;
     height: 70%;
     margin: 2em;
+  }
+   .back-link {
+  text-decoration: none;
+  color: #333;
+  }
+
+  .back-link:hover {
+    text-decoration: none;
+    color: grey;
   }
 </style>

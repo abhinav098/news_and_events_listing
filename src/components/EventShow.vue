@@ -1,21 +1,37 @@
 <template>
   <div class="event-block">
-    <div v-if="event">
-      <h3>{{event.title}}</h3>
-      <p>
-        {{new Date(event.start_date).toDateString()}} to
-        {{new Date(event.end_date).toDateString()}} at
-        {{new Date(event.time).toLocaleTimeString()  }}
-      </p>
-
-      <p>
-        {{event.description}}
-      </p>
-      <p>{{event.location}}</p>
+    <div v-if="isLoading">
+      Loading Event..
     </div>
-    <a v-if="event.file_path" class="btn btn-secondary" :href="event.file_path" target="_blank" download>
-      Download Attachment
-    </a>
+    <div v-else>
+      <div v-if="event">
+        <h3>{{event.title}}</h3>
+        <p>
+          {{new Date(event.start_date).toDateString()}} to
+          {{new Date(event.end_date).toDateString()}} at
+          {{new Date(event.time).toLocaleTimeString()  }}
+        </p>
+
+        <p>
+          {{event.description}}
+        </p>
+        <p>{{event.location}}</p>
+        <div v-if="event.file_url.length">
+          <a class="btn btn-secondary" :href="event.file_url" target="_blank" download>
+            Download Attachment
+          </a>
+        </div>
+      </div>
+      <div v-else>
+        <h3>Not Found</h3>
+      </div>
+      <p>
+        <br>
+        <router-link class="back-link" :to="{name: 'Events'}" exact>
+          Back to Events
+        </router-link>
+      </p>
+    </div>
   </div>
 </template>
 
@@ -27,7 +43,9 @@ export default {
   name: 'EventCard',
   data() {
     return {
-      event: null
+      event: null,
+      errors: [],
+      isLoading: true,
     }
   },
 
@@ -40,6 +58,7 @@ export default {
       this.isLoading = false
     } catch (e) {
       console.log(e);
+      this.isLoading = false
     }
   }
 
@@ -50,5 +69,15 @@ export default {
   .event-block {
     text-align: left;
     padding: 1.6em;
+  }
+
+  .back-link {
+  text-decoration: none;
+  color: #333;
+  }
+
+  .back-link:hover {
+    text-decoration: none;
+    color: grey;
   }
 </style>
