@@ -10,8 +10,8 @@
       <div v-if="newsArticle">
         <div class="row">
           <div class="col-12">
-            <h3>{{newsArticle.headline}}</h3>
-            <img :src="newsArticle.image_url" @error="$event.target.src='https://climate.onep.go.th/wp-content/uploads/2020/01/default-image.png'" />
+            <h1>{{newsArticle.headline}}</h1>
+            <img :src="newsArticle.image_url" @error="$event.target.src='https://climate.onep.go.th/wp-content/uploads/2020/01/default-image.png'" alt="Image" />
             <p>{{new Date(newsArticle.publication_date).toDateString()}} by {{newsArticle.author}}</p>
             <p>{{newsArticle.body}}</p>
           </div>

@@ -2,7 +2,7 @@
   <div class="event-block">
     <div v-if="event">
       <router-link class="event-link" :to="{ name: 'EventShow', params: { id: event.id }}" exact>
-        <h3>{{event.title}}</h3>
+        <h2>{{event.title}}</h2>
       </router-link>
       <p>
         {{new Date(event.start_date).toDateString()}} to

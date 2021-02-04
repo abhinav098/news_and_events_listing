@@ -1,12 +1,15 @@
 <template>
   <div class="news">
-    <h3>News</h3>
+    <h1>News</h1>
     <div v-if="isLoading">
       Loading news..
     </div>
     <div v-else>
       <div class="form row">
         <div class="col-6">
+          <label for="news-search" hidden>
+            Search for news
+          </label>
           <input type="text" id="news-search" v-model="searchTerm" placeholder="Search for news..." />
           <a v-on:click="searchNews" class="btn ">Search</a>
           <small v-on:click="clearSearch" class="btn ">Clear search & filter</small>

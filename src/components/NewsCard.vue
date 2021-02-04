@@ -3,11 +3,11 @@
     <div v-if="newsArticle">
       <div class="row">
         <div class="col-4">
-          <img :src="newsArticle.image_url" @error="$event.target.src='https://climate.onep.go.th/wp-content/uploads/2020/01/default-image.png'" />
+          <img :src="newsArticle.image_url" @error="$event.target.src='https://climate.onep.go.th/wp-content/uploads/2020/01/default-image.png'" alt="Image name" />
         </div>
         <div class="col-8">
           <router-link class="news-link" :to="{ name: 'NewsShow', params: { id: newsArticle.id }}" exact>
-            <h3>{{newsArticle.headline}}</h3>
+            <h2>{{newsArticle.headline}}</h2>
           </router-link>
           <p>{{new Date(newsArticle.publication_date).toDateString()}} by {{newsArticle.author}}</p>
         </div>
@@ -26,7 +26,7 @@ export default {
 <style scoped>
   .news-block {
     border-bottom: 1px #333 solid;
-    padding: 1.6em 0;
+    padding: 2em 1.6em 0 0;
     text-align: left;
   }
   img {

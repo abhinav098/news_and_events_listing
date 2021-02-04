@@ -7,7 +7,10 @@
     <div v-else>
       <div class="row">
         <div class="col-6">
-          <input type="text" id="events-search" v-model="searchTerm" placeholder="Search for events..." />
+            <label for="events-search" hidden>
+              Search for events
+            </label>
+            <input type="text" id="events-search" v-model="searchTerm" placeholder="Search for events..." />
           <a v-on:click="searchEvents" class="btn">Search</a>
           <small v-on:click="clearSearch" class="btn">Clear</small>
         </div>
